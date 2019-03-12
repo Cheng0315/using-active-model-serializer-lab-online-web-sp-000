@@ -12,8 +12,10 @@ $(function() {
     $.get("/products/" + id + ".json", function(data) {
         debugger
         var inventoryText = "<strong>Available</strong>";
-
-        var descriptionText = "<p>"  + "</p><p>" + inventoryText + "</p>";
+        if(data['inventory'] === 0){
+          inventoryText = "<strong>Sold Out</strong>";
+        }
+        var descriptionText = "<p>" + data['description'] + "</p><p>" + inventoryText + "</p>";
         $("#product-" + id).html(descriptionText);
 
     });
